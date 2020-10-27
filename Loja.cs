@@ -30,19 +30,19 @@ class Loja {
   
   "Uno", "xadrez", "Carrinho 4x4 Rock", "Barbie", "Sinuca Infantil", "Violão Infantil","Amoéba", "Pula Pirata",  "Lava Rápido HotWheels", "Quebra-Cabeça 1500 peças"}; //Nomes
 
-  List<double> precosProdutos = new List<double>{"1199.90", "599.95", "39.95", "2999.90", "1250.90", "2199.99", "180.95", "949.90", "599.90", "49.90",
+  List<double> precosProdutos = new List<double>{1199.90, 599.95, 39.95, 2999.90, 1250.90, 2199.99, 180.95, 949.90, 599.90, 49.90,
   
 
   
-  "1339", "105", "1499.99", "626.39", "156.30", "1907.49", "1304.10", "981 ", "998.91", "664.10",
+  1339.00, 105.90, 1499.99, 626.39, 156.30, 1907.49, 1304.10, 981.00 , 998.91, 664.10,
   
   
   
-  "29.90", "89.90", "79.90", "25.90", "6.90", "269.90", "18.90", "24.90", "27.90", "34.90",
+  29.90, 89.90, 79.90, 25.90, 6.90, 269.90, 18.90, 24.90, 27.90, 34.90,
   
   
   
-  "10,90", "20.40", "259,90", "37.90", "79.90", "29,90", "9.99", "69.95", "199.99", "49.90"}; //valores
+  10.90, 20.40, 259.90, 37.90, 79.90, 29.90, 9.99, 69.95, 199.99, 49.90}; //valores
 
   List<int> quantProdutos = new List<int>{5, 5, 10, 3, 5, 3, 8, 5, 8, 10,
 
@@ -54,6 +54,12 @@ class Loja {
 
     
   10, 10, 5, 7, 5, 10, 10, 8, 4, 6};//Quantidades
+
+  List<int> codigosProdutos = new List<int>{};
+
+  for (int i=0; i < quantProdutos.Count; i++) {
+    codigosProdutos.Add(i);
+  }
   
   public List<string> getProdutos () {
     return nomesProdutos;
@@ -65,5 +71,9 @@ class Loja {
 
   public List<int> getQuantidades () {
     return quantProdutos;
+  }
+
+  public List<int> getCodigo () {
+    return codigosProdutos;
   }
 }

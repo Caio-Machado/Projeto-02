@@ -3,9 +3,8 @@ using System.Collections.Generic;
 
 class Cliente {
   //Informações do Cliente.
-  private string Nome, Endereco, Cpf;
+  private string Nome, Endereco, Cpf, Sexo;
   private int Idade;
-  private char Sexo;
   private double Saldo;
 
   //GET's
@@ -17,10 +16,6 @@ class Cliente {
     return Endereco;
   }
 
-  public string getEmail () {
-    return Email;
-  }
-
   public string getCpf () {
     return Cpf;
   }
@@ -29,7 +24,7 @@ class Cliente {
     return Idade;
   }
 
-  public char getSexo () {
+  public string getSexo () {
     return Sexo;
   }
 
@@ -38,10 +33,9 @@ class Cliente {
   }
 
   //Construtor de registro.
-  public Cliente (string nome, string endereco, string email, string cpf, int idade, char sexo, double saldo) {
+  public Cliente (string nome, string endereco, string cpf, int idade, string sexo, double saldo) {
     Nome = nome;
     Endereco = endereco;
-    Email = email;
     Cpf = cpf;
     Idade = idade;
     Sexo = sexo;
