@@ -1,0 +1,74 @@
+/*
+    Console.WriteLine(@"                    -------------------------------");
+    Console.WriteLine(@"                      Departamento de Eletrônicos ");
+    Console.WriteLine(@"                    -------------------------------");
+
+    Console.WriteLine("Selecione o item desejado utilizando o seu respectivo código.\n");
+
+    Console.WriteLine("|   Código   |     Nome do Produto      |   Quantidade   |   Preço   |");
+    Console.WriteLine("----------------------------------------------------------------------");
+
+      for (int y=0; y < 10; y++) {
+        //Ideias/Atributos
+        string testequantid ;
+        string testeProdutos = $"  {executaCodigos.getProdutos()[y]}";
+        //Condicional para os códigos
+        if (executaCodigos.getCodigo()[y] > -1 && executaCodigos.getCodigo()[y] < 10) {
+          Console.Write($"|     {executaCodigos.getCodigo()[y]}      |");
+        }
+
+        else {
+          Console.Write($"|     {executaCodigos.getCodigo()[y]}     |");
+        }
+        
+        
+        //Condicional para os nomes
+        if (executaCodigos.getProdutos()[y].Length < 24) {
+          
+          for (int w=0; w < (24 - executaCodigos.getProdutos()[y].Length); w++) {
+          testeProdutos = testeProdutos + " ";
+          }
+          Console.Write(testeProdutos + "|");
+        }
+      
+        //Condicional para Quantidades
+        if (executaCodigos.getQuantidades()[y] < 10) {
+          Console.Write($"       {executaCodigos.getQuantidades()[y]}        |");
+        }
+
+        else {
+          Console.Write($"       {executaCodigos.getQuantidades()[y]}       |");
+        }
+
+        Console.Write($"   {executaCodigos.getPrecos()[y]}\n");
+        Console.WriteLine("----------------------------------------------------------------------");
+        */
+
+
+
+
+
+
+
+
+
+
+
+
+                Console.WriteLine("\nPara escolher um produto digite o seu respectivo Código.");
+                Console.WriteLine("Caso deseje sair digite 100.");
+                Console.Write(">>");
+                respostaDepartamentosSair = int.Parse(Console.ReadLine());
+
+                if (respostaDepartamentosSair > -1 && respostaDepartamentosSair < 40) {
+                  Console.Write("Digite a quantidade desejada >> ")
+                  pedidoQuantidade = int.Parse(Console.ReadLine());
+
+                  if (pedidoQuantidade > executaCodigos.getQuantidades()[respostaDerpatamentos]) {
+                    Console.WriteLine("Quantidade Indisponível!");
+                  }
+
+                  else {
+                    carDeCompras = new Carrinho(respostaDepartamentosSair, executaCodigos.getNome()[respostaDepartamentosSair], pedidoQuantidade, executaCodigos.getPrecos()[respostaDepartamentosSair] * pedidoQuantidade)
+                  }
+                }

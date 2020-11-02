@@ -32,6 +32,10 @@ class Cliente {
     return Saldo;
   }
 
+  public void setSaldo (double s) {
+    Saldo = Saldo + s;
+  }
+
   //Construtor de registro.
   public Cliente (string nome, string endereco, string cpf, int idade, string sexo, double saldo) {
     Nome = nome;

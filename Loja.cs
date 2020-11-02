@@ -15,6 +15,9 @@ class Loja {
     Indices[20, 29] = Ferramentas
     Indices[30, 39] = Brinquedos
   */
+
+  //Atributos
+  
   //Listas
   List<string> nomesProdutos = new List<string>{"xiaomi", "Samsung J2 Core", "Carregador","Asus", "Smart tv 32p", "Smart Tv 50p", "Smartwatch Xiaomi", "Monitor LG 25p", "Home Theater Fama","Fone Xiaomi Piston 3",
   
@@ -24,13 +27,13 @@ class Loja {
   
   
   
-  "Alicate bico 6 pvc Mayle", "Escada portátil 3 Degraus", "Caixa de ferramentas plástica", "Kit com 7 chaves de fenda", "Pá de jardinagem", "Furadeira a bateria", "Rastelo", "Enxada", "Martelo", "Serrote",
+  "Alicate bico 6 pvc Mayle", "Escada 3 Degraus", "Caixa de ferramentas", "Kit 7 chaves de fenda", "Pá de jardinagem", "Furadeira a bateria", "Rastelo", "Enxada", "Martelo", "Serrote",
 
   
   
   "Uno", "xadrez", "Carrinho 4x4 Rock", "Barbie", "Sinuca Infantil", "Violão Infantil","Amoéba", "Pula Pirata",  "Lava Rápido HotWheels", "Quebra-Cabeça 1500 peças"}; //Nomes
 
-  List<double> precosProdutos = new List<double>{1199.90, 599.95, 39.95, 2999.90, 1250.90, 2199.99, 180.95, 949.90, 599.90, 49.90,
+  List<double> precosProdutos = new List<double>{1199.00, 599.95, 39.95, 2999.99, 1250.95, 2199.99, 180.95, 949.94, 599.93, 49.93,
   
 
   
@@ -57,8 +60,10 @@ class Loja {
 
   List<int> codigosProdutos = new List<int>{};
 
-  for (int i=0; i < quantProdutos.Count; i++) {
-    codigosProdutos.Add(i);
+  public Loja () {
+    for (int x=0; x < quantProdutos.Count; x++) {
+      codigosProdutos.Add(x);
+    }
   }
   
   public List<string> getProdutos () {
@@ -75,5 +80,57 @@ class Loja {
 
   public List<int> getCodigo () {
     return codigosProdutos;
+  }
+
+
+  public void mostraEstoque (string derp ,int ini, int fim) {
+    Console.WriteLine(@"                    -------------------------------");
+    Console.WriteLine($@"                      Departamento de {derp} ");
+    Console.WriteLine(@"                    -------------------------------");
+
+    Console.WriteLine("Selecione o item desejado utilizando o seu respectivo código.\n");
+
+    Console.WriteLine("|   Código   |     Nome do Produto      |   Quantidade   |   Preço   |");
+    Console.WriteLine("----------------------------------------------------------------------");
+
+    for (int y=ini; y < fim; y++) {
+      //Ideias/Atributos
+      string testeProdutos = $"  {nomesProdutos[y]}";
+      //Condicional para os códigos
+      if (codigosProdutos[y] > -1 && codigosProdutos[y] < 10) {
+        Console.Write($"|     {codigosProdutos[y]}      |");
+      }
+
+      else {
+        Console.Write($"|     {codigosProdutos[y]}     |");
+      }
+  
+  
+      //Condicional para os nomes
+      if (nomesProdutos[y].Length < 24) {
+    
+        for (int w=0; w < (24 - nomesProdutos[y].Length); w++) {
+          testeProdutos = testeProdutos + " ";
+        }
+        Console.Write(testeProdutos + "|");
+      }
+
+      else {
+        Console.Write(testeProdutos + "|");
+      }
+
+      //Condicional para Quantidades
+      if (quantProdutos[y] < 10) {
+        Console.Write($"       {quantProdutos[y]}        |");
+      }
+
+      else {
+        Console.Write($"       {quantProdutos[y]}       |");
+      }
+
+      Console.Write($"   {precosProdutos[y]}\n");
+      Console.WriteLine("----------------------------------------------------------------------");
+
+    }
   }
 }

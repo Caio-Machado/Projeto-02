@@ -6,7 +6,8 @@ class Carrinho {
   private int codigoDoProduto;
   private string nomeDoProduto;
   private int quantidadeDoproduto;
-  private double valorTotalDoProduto, valorDoCarrinho;
+  private double valorTotalDoProduto;
+  private double valorDoCarrinho;
 
   //GET's
   public int getcodigoDoProduto () {
@@ -21,21 +22,24 @@ class Carrinho {
     return quantidadeDoproduto;
   }
 
+  public void setquantidadeDoproduto (int qdp) {
+    quantidadeDoproduto = qdp;
+  }
+
   public double getvalorTotalDoProduto () {
     return valorTotalDoProduto;
   }
 
-  public double getvalorDoCarrinho () {
-    return valorDoCarrinho;
+  public void setvalorTotalDoProduto (double vtdp) {
+    valorTotalDoProduto = vtdp;
   }
 
   //Construtor
-  public Carrinho (int CDP, string NDP, int QDP, double VTDP, double VDC) {
+  public Carrinho (int CDP, string NDP, int QDP, double VTDP) {
     codigoDoProduto = CDP;
     nomeDoProduto = NDP;
     quantidadeDoproduto = QDP;
-    valorTotalDoProduto = VTDP;
-    valorDoCarrinho = VDC;
+    valorTotalDoProduto = VTDP * QDP;
+    //valorDoCarrinho = VDC;
   }
-  
 }
