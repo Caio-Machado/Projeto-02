@@ -27,6 +27,7 @@ class MainClass {
     int adicionaQuantItem; //Comporta a resposta do usuário a respeito da quantidade que será adicionado ao estoque.
     int posicaoItemCar; //Resposta do usuário em relação a posição do item escolhido no carrinho.
     int respostaCarrinho; //Resposta do usuário sobre qual ação irá ser feita dentro do carrinho.
+    double atualizaValorCarrinho = 0;
 
     //Usado para saber se o registro foi ou não realizado.
     bool registro = false;
@@ -120,7 +121,7 @@ class MainClass {
         2 - Uma maneira de adicionar dinheiro em uma carteira virtual da loja.
         
         3 - Ir até o carrinho de compras.*/
-        Console.WriteLine("Escolha uma das opções abaixo \n 1 - Comprar\n 2 - vizualizar/Adicionar saldo \n 3 - Carrinho \n");
+        Console.Write("Escolha uma das opções abaixo \n 1 - Comprar\n 2 - vizualizar/Adicionar saldo \n 3 - Carrinho \n>> ");
         
         respostaOpcoes = int.Parse(Console.ReadLine());
         Console.Clear();
@@ -134,7 +135,7 @@ class MainClass {
             //Regiaão de seleção de categoria de estoque. Todas as categorias possuem 10 itens de quantidades e preços variáveis.
             if (respostaOpcoes == 1) {
               Console.WriteLine("Qual departamento deseja acessar?");
-              Console.WriteLine("1 - Eletrônicos em Geral \n2 - Artigos para a casa \n3 - Ferramentas \n4 - Brinquedos \n5 - voltar");
+              Console.Write("1 - Eletrônicos em Geral \n2 - Artigos para a casa \n3 - Ferramentas \n4 - Brinquedos \n5 - voltar \n>> ");
 
 
               if (respostaOpcoes == 5) {
@@ -451,7 +452,7 @@ class MainClass {
 
             if (respostaSaldo == 1) {
               Console.Write("Digite o valor a ser adicionado >> ");
-              formulario.setSaldo(double.Parse(Console.ReadLine()));
+              formulario.setSaldo(formulario.getSaldo() + double.Parse(Console.ReadLine()));
               Console.Clear();
 
               Console.WriteLine("Saldo adicionado com sucesso!!!");
@@ -477,7 +478,11 @@ class MainClass {
         //Caso o usuário escolha vizualizar o carrinho
         //Ele utiliza a mesma estrutura do estoque só que modificado para se adaptar.
         else if (respostaOpcoes == 3) {
-
+          for (int somaF=0; somaF < carDeCompras.Count; somaF++) {
+            atualizaValorCarrinho += carDeCompras[somaF].getvalorTotalDoProduto();
+          }
+          adicionaCarrinho.setvalorDoCarrinho(atualizaValorCarrinho);
+          atualizaValorCarrinho = 0;
           //Lógica que organiza o estoque. (APENAS ESTÉTICO)
           if (carDeCompras.Any()) {
             Console.WriteLine(@"                    -------------------------------");
@@ -526,6 +531,7 @@ class MainClass {
               Console.Write($"   {carDeCompras[y].getvalorTotalDoProduto()}\n");
               Console.WriteLine("----------------------------------------------------------------------");
             }
+            Console.WriteLine($"---------------------------------------------------------| {adicionaCarrinho.getvalorDoCarrinho()}");
 
             /*Opções de coisas a se fazer no carrinho de compras:
             1 - Retirar um item, é possível excluir qualquer item do carrinho não importando sua quantidade.
@@ -559,23 +565,19 @@ class MainClass {
               Console.Write("\nDigite a quantidade a ser adicionada: ");
               adicionaQuantItem = int.Parse(Console.ReadLine());
 
-              if (6 < 5); {
-
-                Console.WriteLine(adicionaQuantItem + carDeCompras[posicaoItemCar].getquantidadeDoproduto());
-                Console.WriteLine(carDeCompras[posicaoItemCar].getquantidadeDoproduto());
-                Console.WriteLine(executaCodigos.getQuantidades()[carDeCompras[posicaoItemCar].getcodigoDoProduto()]);
-                
+              if (adicionaQuantItem + carDeCompras[posicaoItemCar].getquantidadeDoproduto() < executaCodigos.getQuantidades()[carDeCompras[posicaoItemCar].getcodigoDoProduto()]) {
+          
                 carDeCompras[posicaoItemCar].setquantidadeDoproduto(adicionaQuantItem + carDeCompras[posicaoItemCar].getquantidadeDoproduto());
               
                 carDeCompras[posicaoItemCar].setvalorTotalDoProduto(executaCodigos.getPrecos()[carDeCompras[posicaoItemCar].getcodigoDoProduto()] * carDeCompras[posicaoItemCar].getquantidadeDoproduto());
               }
 
-              /*else {
+              else {
                 Console.WriteLine("Quantidade Indisponível.");
                 Console.Write("Aperte Enter para continuar...");
                 Console.ReadLine();
                 Console.Clear();
-              }*/
+              }
             }
 
             else if (respostaCarrinho == 3) {
@@ -594,6 +596,41 @@ class MainClass {
                   carDeCompras.RemoveAt(posicaoItemCar);
                 }
               } 
+            }
+
+            else if (respostaCarrinho == 4) {
+              if (adicionaCarrinho.getvalorDoCarrinho() <= formulario.getSaldo()) {
+                
+                Console.WriteLine("Carrinho Finalizado!!");
+                Console.WriteLine($"Valor final da compra {adicionaCarrinho.getvalorDoCarrinho()}");
+
+                formulario.setSaldo(formulario.getSaldo() - adicionaCarrinho.getvalorDoCarrinho());
+
+                Console.WriteLine($"Seu Saldo na loja atual é {formulario.getSaldo()}");
+
+                for (int apagaCarrinho=0; apagaCarrinho < carDeCompras.Count; apagaCarrinho++) {
+                  executaCodigos.setQuantLista(carDeCompras[apagaCarrinho].getcodigoDoProduto(), carDeCompras[apagaCarrinho].getquantidadeDoproduto());
+                  carDeCompras.RemoveAt(apagaCarrinho);
+                }
+
+                Console.Write("Aperte Enter para continuar na loja...");
+                Console.ReadLine();
+                Console.Clear();
+              }
+
+              else {
+                Console.WriteLine("Você não tem saldo sulficiente na loja!");
+                Console.Write("Aperte Enter para continuar...");
+                Console.ReadLine();
+                Console.Clear();
+              }
+            }
+
+            else {
+              Console.WriteLine("Valor digitado é inválido!");
+              Console.Write("Aperte Enter para continuar...");
+              Console.ReadLine();
+              Console.Clear();
             }
           }
 

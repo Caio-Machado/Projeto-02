@@ -34,12 +34,19 @@ class Carrinho {
     valorTotalDoProduto = vtdp;
   }
 
+  public void setvalorDoCarrinho (double vtdc) {
+    valorDoCarrinho = vtdc;
+  }
+
+  public double getvalorDoCarrinho () {
+    return valorDoCarrinho;
+  }
+
   //Construtor
   public Carrinho (int CDP, string NDP, int QDP, double VTDP) {
     codigoDoProduto = CDP;
     nomeDoProduto = NDP;
     quantidadeDoproduto = QDP;
     valorTotalDoProduto = VTDP * QDP;
-    //valorDoCarrinho = VDC;
   }
 }

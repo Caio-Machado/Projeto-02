@@ -33,7 +33,7 @@ class Cliente {
   }
 
   public void setSaldo (double s) {
-    Saldo = Saldo + s;
+    Saldo = s;
   }
 
   //Construtor de registro.

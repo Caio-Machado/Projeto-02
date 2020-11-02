@@ -82,6 +82,10 @@ class Loja {
     return codigosProdutos;
   }
 
+  public void setQuantLista (int indice, int quantidade) {
+    quantProdutos[indice] = quantProdutos[indice] - quantidade;
+  }
+
 
   public void mostraEstoque (string derp ,int ini, int fim) {
     Console.WriteLine(@"                    -------------------------------");
